@@ -359,21 +359,23 @@ A user can search by API title, description, organization type, organization (mi
 <span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt; [3] &quot;Ministry of Agriculture and Farmers Welfare&quot;               </span></span>
 <span id="cb2-7"><a href="#cb2-7"></a><span class="co">#&gt; [4] &quot;Department of Agriculture, Cooperation and Farmers Welfare&quot;</span></span>
 <span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt; [5] &quot;Directorate of Marketing and Inspection (DMI)&quot;             </span></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="co">#&gt; [6] &quot;Ministry of Commerce and Industry&quot;</span></span></code></pre></div>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co">#&gt; [6] &quot;Ministry of Health and Family Welfare&quot;</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">###List of sectors </span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="kw">get_list_of_sectors</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="st">  </span>head</span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; [1] &quot;Industrial Air Pollution&quot; &quot;Agriculture&quot;             </span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt; [3] &quot;Agricultural Marketing&quot;   &quot;Commerce&quot;                </span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; [5] &quot;Export&quot;                   &quot;Import&quot;</span></span></code></pre></div>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; [1] &quot;Industrial Air Pollution&quot;  &quot;Agriculture&quot;              </span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt; [3] &quot;Agricultural Marketing&quot;    &quot;Health and Family welfare&quot;</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; [5] &quot;Medium&quot;                    &quot;Micro&quot;</span></span></code></pre></div>
 <div id="searching-for-the-right-api" class="section level3">
 <h3>Searching for the right API</h3>
 <p>Once you have an idea about what you want to look for in the API, search queries can be constructed using titles, descriptions as well as the categories explored earlier. A data.frame with information of APIs matching the search keywords is returned. Multiple search functions can be applied over each other utilizing the data.frame structure of the result.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">##Single Criteria</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">search_api_by_title</span>(<span class="dt">title_contains =</span> <span class="st">&quot;pollution&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">2</span>)</span></code></pre></div>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">search_api_by_title</span>(<span class="dt">title_contains =</span> <span class="st">&quot;pollution&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">2</span>)</span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co">#&gt; Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Asia/Caclutta&#39;</span></span></code></pre></div>
+<pre><code>#&gt; Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Asia/Caclutta&#39;</code></pre>
 <table>
 <colgroup>
-<col width="5%"></col>
+<col width="6%"></col>
 <col width="40%"></col>
 <col width="40%"></col>
 <col width="1%"></col>
@@ -405,8 +407,8 @@ A user can search by API title, description, organization type, organization (mi
 <td align="left">Rajya Sabha</td>
 <td align="left">All</td>
 <td align="left">data.gov.in</td>
-<td align="left">2021-03-04T06:52:31Z</td>
-<td align="left">2021-03-23T14:54:05Z</td>
+<td align="left">2021-03-04 12:22:31</td>
+<td align="left">2021-03-23 09:24:05</td>
 </tr>
 <tr class="even">
 <td align="left">b8e4ff80-ec3c-439c-aebb-f27eabe410b3</td>
@@ -416,14 +418,16 @@ A user can search by API title, description, organization type, organization (mi
 <td align="left">Rajya Sabha</td>
 <td align="left">All</td>
 <td align="left">data.gov.in</td>
-<td align="left">2021-03-04T06:37:26Z</td>
-<td align="left">2021-03-23T14:41:45Z</td>
+<td align="left">2021-03-04 12:07:26</td>
+<td align="left">2021-03-23 09:11:45</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">##Multiple Criteria</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>dplyr<span class="op">::</span><span class="kw">intersect</span>(<span class="kw">search_api_by_title</span>(<span class="dt">title_contains =</span> <span class="st">&quot;pollution&quot;</span>),</span>
-<span id="cb5-3"><a href="#cb5-3"></a>                 <span class="kw">search_api_by_organization</span>(<span class="dt">organization_name_contains =</span> <span class="st">&quot;pollution&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">##Multiple Criteria</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>dplyr<span class="op">::</span><span class="kw">intersect</span>(<span class="kw">search_api_by_title</span>(<span class="dt">title_contains =</span> <span class="st">&quot;pollution&quot;</span>),</span>
+<span id="cb6-3"><a href="#cb6-3"></a>                 <span class="kw">search_api_by_organization</span>(<span class="dt">organization_name_contains =</span> <span class="st">&quot;pollution&quot;</span>))</span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#&gt; Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Asia/Caclutta&#39;</span></span></code></pre></div>
+<pre><code>#&gt; Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Asia/Caclutta&#39;</code></pre>
 <table>
 <colgroup>
 <col width="8%"></col>
@@ -433,8 +437,8 @@ A user can search by API title, description, organization type, organization (mi
 <col width="17%"></col>
 <col width="22%"></col>
 <col width="2%"></col>
-<col width="5%"></col>
-<col width="5%"></col>
+<col width="4%"></col>
+<col width="4%"></col>
 </colgroup>
 <thead>
 <tr class="header">
@@ -458,8 +462,8 @@ A user can search by API title, description, organization type, organization (mi
 <td align="left">Ministry of Environment and Forests|Central Pollution Control Board</td>
 <td align="left">Industrial Air Pollution|Water Quality|Natural Resources|Environment and Forest</td>
 <td align="left">data.gov.in</td>
-<td align="left">2017-06-08T16:36:24Z</td>
-<td align="left">2018-11-30T02:35:16Z</td>
+<td align="left">2017-06-08 16:36:24</td>
+<td align="left">2018-11-29 21:05:16</td>
 </tr>
 </tbody>
 </table>
@@ -471,7 +475,9 @@ A user can search by API title, description, organization type, organization (mi
 <p>There are two functions in this section, one to get API information, the other to get a available “field” names and types of the chosen API (using it’s <strong>index_name</strong> obtained above).</p>
 <div id="api-information" class="section level3">
 <h3>API information</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">get_api_info</span>(<span class="dt">api_index =</span> <span class="st">&quot;0579cf1f-7e3b-4b15-b29a-87cf7b7c7a08&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">get_api_info</span>(<span class="dt">api_index =</span> <span class="st">&quot;0579cf1f-7e3b-4b15-b29a-87cf7b7c7a08&quot;</span>)</span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="co">#&gt; Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Asia/Caclutta&#39;</span></span></code></pre></div>
+<pre><code>#&gt; Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Asia/Caclutta&#39;</code></pre>
 <table>
 <colgroup>
 <col width="8%"></col>
@@ -481,8 +487,8 @@ A user can search by API title, description, organization type, organization (mi
 <col width="17%"></col>
 <col width="22%"></col>
 <col width="2%"></col>
-<col width="5%"></col>
-<col width="5%"></col>
+<col width="4%"></col>
+<col width="4%"></col>
 </colgroup>
 <thead>
 <tr class="header">
@@ -506,8 +512,8 @@ A user can search by API title, description, organization type, organization (mi
 <td align="left">Ministry of Environment and Forests|Central Pollution Control Board</td>
 <td align="left">Industrial Air Pollution|Water Quality|Natural Resources|Environment and Forest</td>
 <td align="left">data.gov.in</td>
-<td align="left">2017-06-08T16:36:24Z</td>
-<td align="left">2018-11-30T02:35:16Z</td>
+<td align="left">2017-06-08 16:36:24</td>
+<td align="left">2018-11-29 21:05:16</td>
 </tr>
 </tbody>
 </table>
@@ -515,7 +521,7 @@ A user can search by API title, description, organization type, organization (mi
 <div id="api-fields" class="section level3">
 <h3>API Fields</h3>
 <p>Fields are essentially the variables in the dataset obtained from the API. Knowing the fields before querying for the data will be essential to preform tasks such as filtering, sorting and subsetting the data obtained from the API’s server.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">get_api_fields</span>(<span class="dt">api_index =</span> <span class="st">&quot;0579cf1f-7e3b-4b15-b29a-87cf7b7c7a08&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">get_api_fields</span>(<span class="dt">api_index =</span> <span class="st">&quot;0579cf1f-7e3b-4b15-b29a-87cf7b7c7a08&quot;</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -574,10 +580,11 @@ A user can search by API title, description, organization type, organization (mi
 <h2>Querying the chosen API</h2>
 <p>The function <em>get_api_data</em> is really the powerhouse in this package which allows one to do things over and above a manually constructed API query can do by utilizing the data.frame structure of the underlying data. It allows the user to filter, sort, select variables and to decide how much of the data to extract. The website can itself filter on only one field with one value at a time but one command through the wrapper can make multiple requests and append the results from these requests at the same time.</p>
 <p>But before we dive into data extraction, we first need to validate our API key relieved from <a href="https://data.gov.in/ogpl_apis">data.gov.in</a>. To get the key, you need to register first register and then get the key from your “My Account” page after logging in. More instruction can be found on this <a href="https://data.gov.in/help/how-use-datasets-apis">official guide</a>. Once you get your API key, you can validate it as follows (only need to do this once per session) :</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">##Using a sample key</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="kw">register_api_key</span>(<span class="st">&quot;579b464db66ec23bdd000001cdd3946e44ce4aad7209ff7b23ac571b&quot;</span>)</span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="co">#&gt; Connected to the internet</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co">#&gt; The API key is valid and you won&#39;t have to set it again</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co">##Using a sample key</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="kw">register_api_key</span>(<span class="st">&quot;579b464db66ec23bdd000001cdd3946e44ce4aad7209ff7b23ac571b&quot;</span>)</span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="co">#&gt; Connected to the internet</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="co">#&gt; The server is online</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="co">#&gt; The API key is valid and you won&#39;t have to set it again</span></span></code></pre></div>
 <p>Once you have your key registered, you are ready to extract data from a chosen API. Here is what each argument means :</p>
 <ul>
 <li>api_index : index_name of the chosen API (found by using search functions)</li>
@@ -589,11 +596,12 @@ A user can search by API title, description, organization type, organization (mi
 <p>To recap, first find the API you want using the search functions, get the <strong>index_name</strong> of the API from the results, optionally take a look at the fields present in the data of the API and then use the get_api_data function to extract the data. Suppose we choose the API “Real time Air Quality Index from various location” with index_ name <em>3b01bcb8-0b14-4abf-b6f2-c1bfd384ba69</em>. First we will look at which fields are available to construct the right query.<br />
 Suppose We want to get the data from only 2 cities Chandigarh and Gurugram and pollutants PM10 and NO2. We will let all fields to be returned (dataset columns).</p>
 <p>We will use a sample key from the website for this demonstration.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">register_api_key</span>(<span class="st">&quot;579b464db66ec23bdd0000019fc84f43ca52437351b43702f5998234&quot;</span>)</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="co">#&gt; Connected to the internet</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="co">#&gt; The API key is valid and you won&#39;t have to set it again</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">register_api_key</span>(<span class="st">&quot;579b464db66ec23bdd0000019fc84f43ca52437351b43702f5998234&quot;</span>)</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co">#&gt; Connected to the internet</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="co">#&gt; The server is online</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="co">#&gt; The API key is valid and you won&#39;t have to set it again</span></span></code></pre></div>
 <p>We now look at the fields available to play with.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">get_api_fields</span>(<span class="st">&quot;3b01bcb8-0b14-4abf-b6f2-c1bfd384ba69&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">get_api_fields</span>(<span class="st">&quot;3b01bcb8-0b14-4abf-b6f2-c1bfd384ba69&quot;</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -671,21 +679,23 @@ Suppose We want to get the data from only 2 cities Chandigarh and Gurugram and p
 </tbody>
 </table>
 <p>We accordingly select the <strong>city</strong> and <strong>pollution_id</strong> fields for constructing our query. Note that we use only field id to finally query the data.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="kw">get_api_data</span>(<span class="dt">api_index=</span><span class="st">&quot;3b01bcb8-0b14-4abf-b6f2-c1bfd384ba69&quot;</span>,</span>
-<span id="cb11-3"><a href="#cb11-3"></a>             <span class="dt">results_per_req=</span><span class="dv">10</span>,<span class="dt">filter_by=</span><span class="kw">c</span>(<span class="dt">city=</span><span class="st">&quot;Gurugram,Chandigarh&quot;</span>,</span>
-<span id="cb11-4"><a href="#cb11-4"></a>                                            <span class="dt">polutant_id=</span><span class="st">&quot;PM10,NO2&quot;</span>),</span>
-<span id="cb11-5"><a href="#cb11-5"></a>             <span class="dt">field_select=</span><span class="kw">c</span>(),</span>
-<span id="cb11-6"><a href="#cb11-6"></a>             <span class="dt">sort_by=</span><span class="kw">c</span>(<span class="st">&#39;state&#39;</span>,<span class="st">&#39;city&#39;</span>))</span>
-<span id="cb11-7"><a href="#cb11-7"></a><span class="co">#&gt; Connected to the internet</span></span>
-<span id="cb11-8"><a href="#cb11-8"></a><span class="co">#&gt; url-https://api.data.gov.in/resource/3b01bcb8-0b14-4abf-b6f2-c1bfd384ba69?api-key=579b464db66ec23bdd0000019fc84f43ca52437351b43702f5998234&amp;format=json&amp;offset=0&amp;limit=10&amp;filters[city]=Gurugram&amp;filters[polutant_id]=PM10</span></span>
-<span id="cb11-9"><a href="#cb11-9"></a><span class="co">#&gt; gave the API a rest</span></span>
-<span id="cb11-10"><a href="#cb11-10"></a><span class="co">#&gt; url-https://api.data.gov.in/resource/3b01bcb8-0b14-4abf-b6f2-c1bfd384ba69?api-key=579b464db66ec23bdd0000019fc84f43ca52437351b43702f5998234&amp;format=json&amp;offset=0&amp;limit=10&amp;filters[city]=Chandigarh&amp;filters[polutant_id]=PM10</span></span>
-<span id="cb11-11"><a href="#cb11-11"></a><span class="co">#&gt; gave the API a rest</span></span>
-<span id="cb11-12"><a href="#cb11-12"></a><span class="co">#&gt; url-https://api.data.gov.in/resource/3b01bcb8-0b14-4abf-b6f2-c1bfd384ba69?api-key=579b464db66ec23bdd0000019fc84f43ca52437351b43702f5998234&amp;format=json&amp;offset=0&amp;limit=10&amp;filters[city]=Gurugram&amp;filters[polutant_id]=NO2</span></span>
-<span id="cb11-13"><a href="#cb11-13"></a><span class="co">#&gt; gave the API a rest</span></span>
-<span id="cb11-14"><a href="#cb11-14"></a><span class="co">#&gt; url-https://api.data.gov.in/resource/3b01bcb8-0b14-4abf-b6f2-c1bfd384ba69?api-key=579b464db66ec23bdd0000019fc84f43ca52437351b43702f5998234&amp;format=json&amp;offset=0&amp;limit=10&amp;filters[city]=Chandigarh&amp;filters[polutant_id]=NO2</span></span>
-<span id="cb11-15"><a href="#cb11-15"></a><span class="co">#&gt; gave the API a rest</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="kw">get_api_data</span>(<span class="dt">api_index=</span><span class="st">&quot;3b01bcb8-0b14-4abf-b6f2-c1bfd384ba69&quot;</span>,</span>
+<span id="cb14-3"><a href="#cb14-3"></a>             <span class="dt">results_per_req=</span><span class="dv">10</span>,<span class="dt">filter_by=</span><span class="kw">c</span>(<span class="dt">city=</span><span class="st">&quot;Gurugram,Chandigarh&quot;</span>,</span>
+<span id="cb14-4"><a href="#cb14-4"></a>                                            <span class="dt">polutant_id=</span><span class="st">&quot;PM10,NO2&quot;</span>),</span>
+<span id="cb14-5"><a href="#cb14-5"></a>             <span class="dt">field_select=</span><span class="kw">c</span>(),</span>
+<span id="cb14-6"><a href="#cb14-6"></a>             <span class="dt">sort_by=</span><span class="kw">c</span>(<span class="st">&#39;state&#39;</span>,<span class="st">&#39;city&#39;</span>))</span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="co">#&gt; Connected to the internet</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="co">#&gt; The server is online</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="co">#&gt; url-https://api.data.gov.in/resource/3b01bcb8-0b14-4abf-b6f2-c1bfd384ba69?api-key=579b464db66ec23bdd0000019fc84f43ca52437351b43702f5998234&amp;format=json&amp;offset=0&amp;limit=10&amp;filters[city]=Gurugram&amp;filters[polutant_id]=PM10</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a><span class="co">#&gt; gave the API a rest</span></span>
+<span id="cb14-11"><a href="#cb14-11"></a><span class="co">#&gt; url-https://api.data.gov.in/resource/3b01bcb8-0b14-4abf-b6f2-c1bfd384ba69?api-key=579b464db66ec23bdd0000019fc84f43ca52437351b43702f5998234&amp;format=json&amp;offset=0&amp;limit=10&amp;filters[city]=Chandigarh&amp;filters[polutant_id]=PM10</span></span>
+<span id="cb14-12"><a href="#cb14-12"></a><span class="co">#&gt; gave the API a rest</span></span>
+<span id="cb14-13"><a href="#cb14-13"></a><span class="co">#&gt; url-https://api.data.gov.in/resource/3b01bcb8-0b14-4abf-b6f2-c1bfd384ba69?api-key=579b464db66ec23bdd0000019fc84f43ca52437351b43702f5998234&amp;format=json&amp;offset=0&amp;limit=10&amp;filters[city]=Gurugram&amp;filters[polutant_id]=NO2</span></span>
+<span id="cb14-14"><a href="#cb14-14"></a><span class="co">#&gt; gave the API a rest</span></span>
+<span id="cb14-15"><a href="#cb14-15"></a><span class="co">#&gt; url-https://api.data.gov.in/resource/3b01bcb8-0b14-4abf-b6f2-c1bfd384ba69?api-key=579b464db66ec23bdd0000019fc84f43ca52437351b43702f5998234&amp;format=json&amp;offset=0&amp;limit=10&amp;filters[city]=Chandigarh&amp;filters[polutant_id]=NO2</span></span>
+<span id="cb14-16"><a href="#cb14-16"></a><span class="co">#&gt; gave the API a rest</span></span>
+<span id="cb14-17"><a href="#cb14-17"></a><span class="co">#&gt; No results returned - check your api_index</span></span></code></pre></div>
 <table>
 <colgroup>
 <col width="2%"></col>
@@ -717,94 +727,94 @@ Suppose We want to get the data from only 2 cities Chandigarh and Gurugram and p
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">460</td>
+<td align="left">428</td>
 <td align="left">India</td>
 <td align="left">Haryana</td>
 <td align="left">Gurugram</td>
 <td align="left">Sector-51, Gurugram - HSPCB</td>
-<td align="left">07-04-2021 12:00:00</td>
+<td align="left">31-05-2021 09:00:00</td>
 <td align="left">PM10</td>
-<td align="left">155</td>
-<td align="left">500</td>
-<td align="left">336</td>
+<td align="left">56</td>
+<td align="left">439</td>
+<td align="left">117</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">467</td>
+<td align="left">435</td>
 <td align="left">India</td>
 <td align="left">Haryana</td>
 <td align="left">Gurugram</td>
 <td align="left">Teri Gram, Gurugram - HSPCB</td>
-<td align="left">07-04-2021 12:00:00</td>
+<td align="left">31-05-2021 09:00:00</td>
 <td align="left">PM10</td>
-<td align="left">114</td>
-<td align="left">448</td>
-<td align="left">218</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">120</td>
-<td align="left">India</td>
-<td align="left">Chandigarh</td>
-<td align="left">Chandigarh</td>
-<td align="left">Sector-25, Chandigarh - CPCC</td>
-<td align="left">07-04-2021 12:00:00</td>
-<td align="left">PM10</td>
-<td align="left">105</td>
-<td align="left">500</td>
-<td align="left">231</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">461</td>
-<td align="left">India</td>
-<td align="left">Haryana</td>
-<td align="left">Gurugram</td>
-<td align="left">Sector-51, Gurugram - HSPCB</td>
-<td align="left">07-04-2021 12:00:00</td>
-<td align="left">NO2</td>
-<td align="left">16</td>
-<td align="left">22</td>
-<td align="left">18</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">468</td>
-<td align="left">India</td>
-<td align="left">Haryana</td>
-<td align="left">Gurugram</td>
-<td align="left">Teri Gram, Gurugram - HSPCB</td>
-<td align="left">07-04-2021 12:00:00</td>
-<td align="left">NO2</td>
-<td align="left">10</td>
-<td align="left">23</td>
-<td align="left">16</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">474</td>
-<td align="left">India</td>
-<td align="left">Haryana</td>
-<td align="left">Gurugram</td>
-<td align="left">Vikas Sadan, Gurugram - HSPCB</td>
-<td align="left">07-04-2021 12:00:00</td>
-<td align="left">NO2</td>
-<td align="left">12</td>
-<td align="left">139</td>
+<td align="left">24</td>
+<td align="left">104</td>
 <td align="left">57</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">121</td>
+<td align="left">108</td>
 <td align="left">India</td>
 <td align="left">Chandigarh</td>
 <td align="left">Chandigarh</td>
 <td align="left">Sector-25, Chandigarh - CPCC</td>
-<td align="left">07-04-2021 12:00:00</td>
+<td align="left">31-05-2021 09:00:00</td>
+<td align="left">PM10</td>
+<td align="left">56</td>
+<td align="left">134</td>
+<td align="left">85</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">429</td>
+<td align="left">India</td>
+<td align="left">Haryana</td>
+<td align="left">Gurugram</td>
+<td align="left">Sector-51, Gurugram - HSPCB</td>
+<td align="left">31-05-2021 09:00:00</td>
 <td align="left">NO2</td>
 <td align="left">17</td>
+<td align="left">23</td>
+<td align="left">19</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">436</td>
+<td align="left">India</td>
+<td align="left">Haryana</td>
+<td align="left">Gurugram</td>
+<td align="left">Teri Gram, Gurugram - HSPCB</td>
+<td align="left">31-05-2021 09:00:00</td>
+<td align="left">NO2</td>
+<td align="left">5</td>
+<td align="left">8</td>
+<td align="left">6</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">442</td>
+<td align="left">India</td>
+<td align="left">Haryana</td>
+<td align="left">Gurugram</td>
+<td align="left">Vikas Sadan, Gurugram - HSPCB</td>
+<td align="left">31-05-2021 09:00:00</td>
+<td align="left">NO2</td>
+<td align="left">19</td>
+<td align="left">108</td>
+<td align="left">49</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
 <td align="left">109</td>
-<td align="left">40</td>
+<td align="left">India</td>
+<td align="left">Chandigarh</td>
+<td align="left">Chandigarh</td>
+<td align="left">Sector-25, Chandigarh - CPCC</td>
+<td align="left">31-05-2021 09:00:00</td>
+<td align="left">NO2</td>
+<td align="left">14</td>
+<td align="left">42</td>
+<td align="left">23</td>
 <td align="left">NA</td>
 </tr>
 </tbody>

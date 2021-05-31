@@ -17,36 +17,42 @@
 #' register_api_key(api_key=xxx,show_key=FALSE)
 #' }
 
+
 register_api_key<-function(user_api_key,show_key=TRUE){
 
   check_internet_connection()
 
-  #test key function
-  test_api_key<-function(key){
-    ##make a test request using any working API
-    ##Get a working API from the master API
-    working_api<-httr::GET(url="https://api.data.gov.in/lists?format=json&notfilters[source]=visualize.data.gov.in&filters[active]=1&offset=0&sort[updated]=desc&limit=1") %>%
-      httr::content()
-    working_api_index_name<-working_api$records[[1]]$index_name
-    working_api_response<-httr::GET(url=paste0("https://api.data.gov.in/resource/",working_api_index_name,"?api-key=",key,"&format=json&offset=0&limit=10")) %>%
-      httr::content()
-    if((working_api_response$records %>% length())>0){
-      success=TRUE
-    } else
-      success=FALSE
-    return(success)
-    #####
+  check_datagovin_server()
 
+  if(getOption("datagovin_server_online")==TRUE){
+
+    #test key function
+    test_api_key<-function(key){
+      ##make a test request using any working API
+      ##Get a working API from the master API
+      working_api<-httr::GET(url="https://api.data.gov.in/lists?format=json&notfilters[source]=visualize.data.gov.in&filters[active]=1&offset=0&sort[updated]=desc&limit=1") %>%
+        httr::content()
+      working_api_index_name<-working_api$records[[1]]$index_name
+      working_api_response<-httr::GET(url=paste0("https://api.data.gov.in/resource/",working_api_index_name,"?api-key=",key,"&format=json&offset=0&limit=10")) %>%
+        httr::content()
+      if((working_api_response$records %>% length())>0){
+        success=TRUE
+      } else
+        success=FALSE
+      return(success)
+      #####
+
+    }
+
+    #if test is a success
+    if(test_api_key(key=user_api_key)){options(datagovin=list(user_api_key_set=user_api_key,key_valid=TRUE,key_shown=show_key))
+      message("The API key is valid and you won't have to set it again")} else
+        message("The API key is invalid. Please generate your API key on- \n https://data.gov.in/user")
+    ###make a test request ; if it doesn't work, unset this one and set it to sample key
   }
 
-  #if test is a success
-  if(test_api_key(key=user_api_key)){options(datagovin=list(user_api_key_set=user_api_key,key_valid=TRUE,key_shown=show_key))
-    message("The API key is valid and you won't have to set it again")} else
-      message("The API key is invalid. Please generate your API key on- \n https://data.gov.in/user")
-  ###make a test request ; if it doesn't work, unset this one and set it to sample key
+}
 
-
-  }
 
 
 
@@ -77,6 +83,59 @@ get_list_of_org_types<-function(){
 
 
 }
+
+
+#' Get a data.frame of recently created APIs
+#'
+#' This will return a data.frame of recently created APIs
+#'
+#'
+#' @param N Number of APIs to return
+#' @return Get data.frame of N most recently created API sorted by date of creation
+#' @export
+#'
+#' @examples
+#' recently_created_api<-get_recently_updated_api()
+get_recently_created_api<-function(N=20){
+
+  if(is.null(getOption("api_info_data"))){
+    options(api_info_data=import_api_details())}
+  api_details<-getOption("api_info_data")
+  api_details %>%
+    dplyr::arrange(dplyr::desc(.data$created_date)) %>%
+    utils::head(N)
+
+
+
+}
+
+
+
+
+#' Get a data.frame of recently updated APIs
+#'
+#' This will return a data.frame of recently updated APIs
+#'
+#' @param N Number of APIs to return
+#' @return Get data.frame of N most recently updated API sorted by date of update
+#' @export
+#'
+#' @examples
+#' recently_updated_api<-get_recently_updated_api()
+get_recently_updated_api<-function(N=20){
+
+  if(is.null(getOption("api_info_data"))){
+    options(api_info_data=import_api_details())}
+  api_details<-getOption("api_info_data")
+  api_details %>%
+    dplyr::arrange(dplyr::desc(.data$updated_date)) %>%
+    utils::head(N)
+
+
+
+}
+
+
 
 
 #' Get a list of unique organizations
@@ -153,6 +212,61 @@ get_list_of_sources<-function()  {
   unique
 
 }
+
+
+#' Search API by Created Date
+#'
+#' Returns APIs which were created on a specific date.
+#' This function takes in a Date object as its input. Use ymd/mdy/dmy functions
+#' from the package lubridate to make this easier.
+#'
+#'
+#' @param date A Date object corresponding to chosen date of creation
+#'
+#' @return data.frame of API details filtered by date of creation
+#' @export
+#'
+#' @examples
+#' filtered_api<-search_api_by_created_date(date=as.Date("2021-12-20"))
+search_api_by_created_date<-function(date=Sys.Date()){
+
+  if(is.null(getOption("api_info_data"))){
+    options(api_info_data=import_api_details())}
+  api_details<-getOption("api_info_data")
+
+  filtered_details<-api_details %>%
+    dplyr::filter(as.Date(.data$created_date)==date)
+  return(filtered_details)
+}
+
+
+#' Search API by Updated Date
+#'
+#' Returns APIs which were updated on a specific date.
+#' This function takes in a Date object as its input. Use ymd/mdy/dmy functions
+#' from the package lubridate to make this easier.
+#'
+#'
+#' @param date A Date object corresponding to chosen date of update
+#'
+#' @return data.frame of API details filtered by date of update
+#' @export
+#'
+#' @examples
+#' filtered_api<-search_api_by_updated_date(date=as.Date("2021-12-20"))
+search_api_by_updated_date<-function(date=Sys.Date()){
+
+  if(is.null(getOption("api_info_data"))){
+    options(api_info_data=import_api_details())}
+  api_details<-getOption("api_info_data")
+
+  filtered_details<-api_details %>%
+    dplyr::filter(as.Date(.data$updated_date)==date)
+  return(filtered_details)
+}
+
+
+
 
 
 #' Search API by title
@@ -377,9 +491,14 @@ get_api_data<-function(api_index, results_per_req="all",
 
   check_internet_connection()
 
+  check_datagovin_server()
+
+  if(getOption("datagovin_server_online")==TRUE){
+
   ##check if there is a valid API key
-  if(is.null(getOption("datagovin"))){stop("You haven't validated your API key.
+  if(is.null(getOption("datagovin"))){message("You haven't validated your API key.
                                            Use register_api_key() to do so.")}
+    else {
 
 
   ##first a function that scrubs the API key if the show key option is false
@@ -471,9 +590,18 @@ get_api_data<-function(api_index, results_per_req="all",
     full_data<-dplyr::bind_rows(full_data,fill_data)
 
   }
-  return(full_data)
+  if(length(full_data)==0) {
+    message("No results returned - check your api_index") } else {
+      return(full_data)
+    }
 
+
+
+
+  }
+ }
 }
+
 
 
 
