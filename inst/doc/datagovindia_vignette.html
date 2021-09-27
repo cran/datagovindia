@@ -354,18 +354,18 @@ A user can search by API title, description, organization type, organization (mi
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">###List of organizations (or ministries)</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="kw">get_list_of_organizations</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="st">  </span>head</span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt; [1] &quot;Ministry of Environment and Forests&quot;                       </span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="co">#&gt; [2] &quot;Central Pollution Control Board&quot;                           </span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt; [3] &quot;Ministry of Agriculture and Farmers Welfare&quot;               </span></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="co">#&gt; [4] &quot;Department of Agriculture, Cooperation and Farmers Welfare&quot;</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt; [5] &quot;Directorate of Marketing and Inspection (DMI)&quot;             </span></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="co">#&gt; [6] &quot;Ministry of Health and Family Welfare&quot;</span></span></code></pre></div>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt; [1] &quot;Ministry of Agriculture and Farmers Welfare&quot;               </span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co">#&gt; [2] &quot;Department of Agriculture, Cooperation and Farmers Welfare&quot;</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt; [3] &quot;Directorate of Marketing and Inspection (DMI)&quot;             </span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co">#&gt; [4] &quot;Ministry of Environment, Forest and Climate Change&quot;        </span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt; [5] &quot;Central Pollution Control Board&quot;                           </span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co">#&gt; [6] &quot;Ministry of Micro, Small and Medium Enterprises&quot;</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">###List of sectors </span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="kw">get_list_of_sectors</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="st">  </span>head</span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; [1] &quot;Industrial Air Pollution&quot;  &quot;Agriculture&quot;              </span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt; [3] &quot;Agricultural Marketing&quot;    &quot;Health and Family welfare&quot;</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; [5] &quot;Medium&quot;                    &quot;Micro&quot;</span></span></code></pre></div>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; [1] &quot;Agriculture&quot;               &quot;Agricultural Marketing&quot;   </span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt; [3] &quot;Environment and Forest&quot;    &quot;Vehicular Air Pollution&quot;  </span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; [5] &quot;Residential Air Pollution&quot; &quot;Industrial Air Pollution&quot;</span></span></code></pre></div>
 <div id="searching-for-the-right-api" class="section level3">
 <h3>Searching for the right API</h3>
 <p>Once you have an idea about what you want to look for in the API, search queries can be constructed using titles, descriptions as well as the categories explored earlier. A data.frame with information of APIs matching the search keywords is returned. Multiple search functions can be applied over each other utilizing the data.frame structure of the result.</p>
@@ -431,11 +431,11 @@ A user can search by API title, description, organization type, organization (mi
 <table>
 <colgroup>
 <col width="8%"></col>
-<col width="33%"></col>
+<col width="32%"></col>
 <col width="2%"></col>
 <col width="2%"></col>
-<col width="17%"></col>
-<col width="22%"></col>
+<col width="20%"></col>
+<col width="21%"></col>
 <col width="2%"></col>
 <col width="4%"></col>
 <col width="4%"></col>
@@ -459,7 +459,7 @@ A user can search by API title, description, organization type, organization (mi
 <td align="left">Details of Comprehensive Environmental Pollution Index (CEPI) Scores and Status of Moratorium in Critically Polluted Areas (CPAs) in India</td>
 <td align="left">NA</td>
 <td align="left">Central</td>
-<td align="left">Ministry of Environment and Forests|Central Pollution Control Board</td>
+<td align="left">Ministry of Environment, Forest and Climate Change|Central Pollution Control Board</td>
 <td align="left">Industrial Air Pollution|Water Quality|Natural Resources|Environment and Forest</td>
 <td align="left">data.gov.in</td>
 <td align="left">2017-06-08 16:36:24</td>
@@ -481,11 +481,11 @@ A user can search by API title, description, organization type, organization (mi
 <table>
 <colgroup>
 <col width="8%"></col>
-<col width="33%"></col>
+<col width="32%"></col>
 <col width="2%"></col>
 <col width="2%"></col>
-<col width="17%"></col>
-<col width="22%"></col>
+<col width="20%"></col>
+<col width="21%"></col>
 <col width="2%"></col>
 <col width="4%"></col>
 <col width="4%"></col>
@@ -509,7 +509,7 @@ A user can search by API title, description, organization type, organization (mi
 <td align="left">Details of Comprehensive Environmental Pollution Index (CEPI) Scores and Status of Moratorium in Critically Polluted Areas (CPAs) in India</td>
 <td align="left">NA</td>
 <td align="left">Central</td>
-<td align="left">Ministry of Environment and Forests|Central Pollution Control Board</td>
+<td align="left">Ministry of Environment, Forest and Climate Change|Central Pollution Control Board</td>
 <td align="left">Industrial Air Pollution|Water Quality|Natural Resources|Environment and Forest</td>
 <td align="left">data.gov.in</td>
 <td align="left">2017-06-08 16:36:24</td>
@@ -642,15 +642,15 @@ Suppose We want to get the data from only 2 cities Chandigarh and Gurugram and p
 <td align="left">keyword</td>
 </tr>
 <tr class="odd">
+<td align="left">pollutant_id</td>
+<td align="left">pollutant_id</td>
+<td align="left">keyword</td>
+</tr>
+<tr class="even">
 <td align="left">last_update</td>
 <td align="left">last_update</td>
 <td align="left">date</td>
 </tr>
-<tr class="even">
-<td align="left">pollutant_id</td>
-<td align="left">pollutant_id</td>
-<td align="left">keyword</td>
-</tr>
 <tr class="odd">
 <td align="left">pollutant_min</td>
 <td align="left">pollutant_min</td>
@@ -667,11 +667,6 @@ Suppose We want to get the data from only 2 cities Chandigarh and Gurugram and p
 <td align="left">double</td>
 </tr>
 <tr class="even">
-<td align="left">pollutant_unit</td>
-<td align="left">pollutant_unit</td>
-<td align="left">keyword</td>
-</tr>
-<tr class="odd">
 <td align="left">resource_uuid</td>
 <td align="left">resource_uuid</td>
 <td align="left">keyword</td>
@@ -702,10 +697,9 @@ Suppose We want to get the data from only 2 cities Chandigarh and Gurugram and p
 <col width="5%"></col>
 <col width="7%"></col>
 <col width="7%"></col>
-<col width="19%"></col>
-<col width="12%"></col>
-<col width="8%"></col>
+<col width="23%"></col>
 <col width="9%"></col>
+<col width="14%"></col>
 <col width="9%"></col>
 <col width="9%"></col>
 <col width="9%"></col>
@@ -717,105 +711,145 @@ Suppose We want to get the data from only 2 cities Chandigarh and Gurugram and p
 <th align="left">state</th>
 <th align="left">city</th>
 <th align="left">station</th>
-<th align="left">last_update</th>
 <th align="left">pollutant_id</th>
+<th align="left">last_update</th>
 <th align="left">pollutant_min</th>
 <th align="left">pollutant_max</th>
 <th align="left">pollutant_avg</th>
-<th align="left">pollutant_unit</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">428</td>
+<td align="left">550</td>
+<td align="left">India</td>
+<td align="left">Haryana</td>
+<td align="left">Gurugram</td>
+<td align="left">NISE Gwal Pahari, Gurugram - IMD</td>
+<td align="left">PM10</td>
+<td align="left">25-09-2021 05:00:00</td>
+<td align="left">22</td>
+<td align="left">102</td>
+<td align="left">50</td>
+</tr>
+<tr class="even">
+<td align="left">555</td>
 <td align="left">India</td>
 <td align="left">Haryana</td>
 <td align="left">Gurugram</td>
 <td align="left">Sector-51, Gurugram - HSPCB</td>
-<td align="left">31-05-2021 09:00:00</td>
 <td align="left">PM10</td>
-<td align="left">56</td>
-<td align="left">439</td>
-<td align="left">117</td>
-<td align="left">NA</td>
+<td align="left">25-09-2021 05:00:00</td>
+<td align="left">59</td>
+<td align="left">119</td>
+<td align="left">81</td>
 </tr>
-<tr class="even">
-<td align="left">435</td>
+<tr class="odd">
+<td align="left">562</td>
 <td align="left">India</td>
 <td align="left">Haryana</td>
 <td align="left">Gurugram</td>
 <td align="left">Teri Gram, Gurugram - HSPCB</td>
-<td align="left">31-05-2021 09:00:00</td>
 <td align="left">PM10</td>
-<td align="left">24</td>
-<td align="left">104</td>
-<td align="left">57</td>
-<td align="left">NA</td>
+<td align="left">25-09-2021 05:00:00</td>
+<td align="left">36</td>
+<td align="left">100</td>
+<td align="left">61</td>
+</tr>
+<tr class="even">
+<td align="left">103</td>
+<td align="left">India</td>
+<td align="left">Chandigarh</td>
+<td align="left">Chandigarh</td>
+<td align="left">Sector 22, Chandigarh - CPCC</td>
+<td align="left">PM10</td>
+<td align="left">25-09-2021 05:00:00</td>
+<td align="left">13</td>
+<td align="left">102</td>
+<td align="left">49</td>
 </tr>
 <tr class="odd">
-<td align="left">108</td>
+<td align="left">110</td>
 <td align="left">India</td>
 <td align="left">Chandigarh</td>
 <td align="left">Chandigarh</td>
 <td align="left">Sector-25, Chandigarh - CPCC</td>
-<td align="left">31-05-2021 09:00:00</td>
 <td align="left">PM10</td>
-<td align="left">56</td>
-<td align="left">134</td>
-<td align="left">85</td>
-<td align="left">NA</td>
+<td align="left">25-09-2021 05:00:00</td>
+<td align="left">19</td>
+<td align="left">84</td>
+<td align="left">42</td>
 </tr>
 <tr class="even">
-<td align="left">429</td>
+<td align="left">551</td>
+<td align="left">India</td>
+<td align="left">Haryana</td>
+<td align="left">Gurugram</td>
+<td align="left">NISE Gwal Pahari, Gurugram - IMD</td>
+<td align="left">NO2</td>
+<td align="left">25-09-2021 05:00:00</td>
+<td align="left">13</td>
+<td align="left">25</td>
+<td align="left">17</td>
+</tr>
+<tr class="odd">
+<td align="left">556</td>
 <td align="left">India</td>
 <td align="left">Haryana</td>
 <td align="left">Gurugram</td>
 <td align="left">Sector-51, Gurugram - HSPCB</td>
-<td align="left">31-05-2021 09:00:00</td>
 <td align="left">NO2</td>
-<td align="left">17</td>
-<td align="left">23</td>
-<td align="left">19</td>
-<td align="left">NA</td>
+<td align="left">25-09-2021 05:00:00</td>
+<td align="left">8</td>
+<td align="left">13</td>
+<td align="left">10</td>
 </tr>
-<tr class="odd">
-<td align="left">436</td>
+<tr class="even">
+<td align="left">563</td>
 <td align="left">India</td>
 <td align="left">Haryana</td>
 <td align="left">Gurugram</td>
 <td align="left">Teri Gram, Gurugram - HSPCB</td>
-<td align="left">31-05-2021 09:00:00</td>
 <td align="left">NO2</td>
-<td align="left">5</td>
+<td align="left">25-09-2021 05:00:00</td>
 <td align="left">8</td>
-<td align="left">6</td>
-<td align="left">NA</td>
+<td align="left">10</td>
+<td align="left">8</td>
 </tr>
-<tr class="even">
-<td align="left">442</td>
+<tr class="odd">
+<td align="left">569</td>
 <td align="left">India</td>
 <td align="left">Haryana</td>
 <td align="left">Gurugram</td>
 <td align="left">Vikas Sadan, Gurugram - HSPCB</td>
-<td align="left">31-05-2021 09:00:00</td>
 <td align="left">NO2</td>
-<td align="left">19</td>
-<td align="left">108</td>
-<td align="left">49</td>
-<td align="left">NA</td>
+<td align="left">25-09-2021 05:00:00</td>
+<td align="left">17</td>
+<td align="left">40</td>
+<td align="left">28</td>
+</tr>
+<tr class="even">
+<td align="left">104</td>
+<td align="left">India</td>
+<td align="left">Chandigarh</td>
+<td align="left">Chandigarh</td>
+<td align="left">Sector 22, Chandigarh - CPCC</td>
+<td align="left">NO2</td>
+<td align="left">25-09-2021 05:00:00</td>
+<td align="left">15</td>
+<td align="left">83</td>
+<td align="left">42</td>
 </tr>
 <tr class="odd">
-<td align="left">109</td>
+<td align="left">111</td>
 <td align="left">India</td>
 <td align="left">Chandigarh</td>
 <td align="left">Chandigarh</td>
 <td align="left">Sector-25, Chandigarh - CPCC</td>
-<td align="left">31-05-2021 09:00:00</td>
 <td align="left">NO2</td>
-<td align="left">14</td>
-<td align="left">42</td>
-<td align="left">23</td>
-<td align="left">NA</td>
+<td align="left">25-09-2021 05:00:00</td>
+<td align="left">4</td>
+<td align="left">29</td>
+<td align="left">13</td>
 </tr>
 </tbody>
 </table>
